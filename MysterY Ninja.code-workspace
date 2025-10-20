@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"name": "MysterY Ninja",
+			"path": ".."
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "Tools"
+	}
+}
