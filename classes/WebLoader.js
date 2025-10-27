@@ -1,4 +1,8 @@
-class WebLoader {
+/**
+ * Class representing a web loader that tracks loading progress of resources.
+ * @class
+ */
+export class WebLoader {
     /**
      * Create a WebLoader instance.
      * @param {Object} options - Configuration options for the loader.
@@ -113,5 +117,3 @@ class WebLoader {
         console.log("Usage: WebLoader({ timeout: <milliseconds> })");
     }
 }
-
-export default WebLoader;

@@ -1,8 +1,13 @@
 /**
- * Class representing a web loader that tracks loading progress of resources.
+ * Class representing an animation controller for DOM elements
+ * @class
  */
-
-class Animation {
+export class Animation {
+    /**
+     * Creates an instance of Animation
+     * @param {(string|HTMLElement)} target - CSS selector or DOM element to animate
+     * @throws {Error} When target element is not found
+     */
     constructor(target) {
         this.target = typeof target === 'string' ? document.querySelector(target) : target;
         if (!this.target) {
@@ -10,111 +15,91 @@ class Animation {
         }
     }
 
+    /**
+     * Fades in the target element
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.duration=1000] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @returns {Object} Assistant object with help method
+     */
     fadeIn(settings = { duration: 1000, easing: 'linear', delay: 0 }) {
         const { duration, easing, delay } = settings;
         this.target.style.transition = `opacity ${duration}ms ${easing} ${delay}ms`;
         this.target.style.opacity = 1;
-
-        const assistent = {
-            help: () => {
-                console.log('The fadeIn method changes the opacity of the target element from 0 to 1.');
-                console.log('Usage: fadeIn({ duration: number, easing: string, delay: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- duration: Duration of the animation in milliseconds (default: 1000)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-            }
-        }
-
-        return assistent;
     }
 
+    /**
+     * Fades out the target element
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.duration=1000] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @returns {Object} Assistant object with help method
+     */
     fadeOut(settings = { duration: 1000, easing: 'linear', delay: 0 }) {
         const { duration, easing, delay } = settings;
         this.target.style.transition = `opacity ${duration}ms ${easing} ${delay}ms`;
         this.target.style.opacity = 0;
-
-        const assistent = {
-            help: () => {
-                console.log('The fadeOut method changes the opacity of the target element from 1 to 0.');
-                console.log('Usage: fadeOut({ duration: number, easing: string, delay: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- duration: Duration of the animation in milliseconds (default: 1000)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-            }
-        }
-
-        return assistent;
     }
 
+    /**
+     * Moves the target element to a new position
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.x=0] - Horizontal translation in pixels
+     * @param {number} [settings.y=0] - Vertical translation in pixels
+     * @param {number} [settings.duration=1000] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @returns {Object} Assistant object with help method
+     */
     move(settings = { x: 0, y: 0, duration: 1000, easing: 'linear', delay: 0 }) {
         const { x, y, duration, easing, delay } = settings;
         this.target.style.transition = `transform ${duration}ms ${easing} ${delay}ms`;
         this.target.style.transform = `translate(${x}px, ${y}px)`;
-
-        const assistent = {
-            help: () => {
-                console.log('The move method translates the target element to a new position.');
-                console.log('Usage: move({ x: number, y: number, duration: number, easing: string, delay: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- x: Horizontal distance to move in pixels (default: 0)');
-                console.log('- y: Vertical distance to move in pixels (default: 0)');
-                console.log('- duration: Duration of the animation in milliseconds (default: 1000)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-            }
-        }
-
-        return assistent;
     }
 
+    /**
+     * Rotates the target element
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.angle=0] - Rotation angle in degrees
+     * @param {number} [settings.duration=1000] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @returns {Object} Assistant object with help method
+     */
     rotate(settings = { angle: 0, duration: 1000, easing: 'linear', delay: 0 }) {
         const { angle, duration, easing, delay } = settings;
         this.target.style.transition = `transform ${duration}ms ${easing} ${delay}ms`;
         this.target.style.transform = `rotate(${angle}deg)`;
-
-        const assistent = {
-            help: () => {
-                console.log('The rotate method rotates the target element by a specified angle.');
-                console.log('Usage: rotate({ angle: number, duration: number, easing: string, delay: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- angle: Angle to rotate in degrees (default: 0)');
-                console.log('- duration: Duration of the animation in milliseconds (default: 1000)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-            }
-        }
-
-        return assistent;
     }
 
+    /**
+     * Scales the target element
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.scaleX=1] - Horizontal scale factor
+     * @param {number} [settings.scaleY=1] - Vertical scale factor
+     * @param {number} [settings.duration=1000] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @returns {Object} Assistant object with help method
+     */
     scale(settings = { scaleX: 1, scaleY: 1, duration: 1000, easing: 'linear', delay: 0 }) {
         const { scaleX, scaleY, duration, easing, delay } = settings;
         this.target.style.transition = `transform ${duration}ms ${easing} ${delay}ms`;
         this.target.style.transform = `scale(${scaleX}, ${scaleY})`;
-
-        const assistent = {
-            help: () => {
-                console.log('The scale method scales the target element by specified factors.');
-                console.log('Usage: scale({ scaleX: number, scaleY: number, duration: number, easing: string, delay: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- scaleX: Horizontal scaling factor (default: 1)');
-                console.log('- scaleY: Vertical scaling factor (default: 1)');
-                console.log('- duration: Duration of the animation in milliseconds (default: 1000)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-            }
-        }
-
-        return assistent;
     }
 
+    /**
+     * Applies a shaking effect to the target element
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.amplifier=10] - Maximum shake distance in pixels
+     * @param {number} [settings.frequency=100] - Time between shakes in milliseconds
+     * @param {number} [settings.duration=500] - Total duration of shake effect
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @returns {Object} Controller object with help method
+     */
     shake(settings = { amplifier: 10, frequency: 100, duration: 500, easing: 'linear', delay: 0 }) {
         const { amplifier, frequency, duration, easing, delay } = settings;
 
@@ -131,24 +116,17 @@ class Animation {
         setTimeout(() => {
             this.target.style.transform = 'translate(0, 0)';
         }, duration + delay);
-
-        const controller = {
-            help: () => {
-                console.log('The shake method applies a shaking effect to the target element.');
-                console.log('Usage: shake({ amplifier: number, frequency: number, duration: number, easing: string, delay: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- amplifier: Maximum distance to shake in pixels (default: 10)');
-                console.log('- frequency: Time interval between shakes in milliseconds (default: 100)');
-                console.log('- duration: Total duration of the shake effect in milliseconds (default: 500)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-            }
-        }
-
-        return controller;
     }
 
+    /**
+     * Applies a pulse (scale up and down) effect to the target element
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.scaleX=1.1] - Maximum horizontal scale factor
+     * @param {number} [settings.scaleY=1.1] - Maximum vertical scale factor
+     * @param {number} [settings.duration=500] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     */
     pulse(settings = { scaleX: 1.1, scaleY: 1.1, duration: 500, easing: 'linear', delay: 0 }) {
         const { scaleX, scaleY, duration, easing, delay } = settings;
         this.target.style.transition = `transform ${duration}ms ${easing} ${delay}ms`;
@@ -162,6 +140,16 @@ class Animation {
 
     // More animation methods to be added exactly here...
 
+    /**
+     * Applies custom keyframe animations to the target element
+     * @param {(Object|Array)} frames - Keyframe definitions as object or array
+     * @param {Object} settings - Animation settings
+     * @param {number} [settings.duration=1000] - Duration of animation in milliseconds
+     * @param {string} [settings.easing='linear'] - CSS easing function
+     * @param {number} [settings.delay=0] - Delay before animation starts in milliseconds
+     * @param {number} [settings.iterations=1] - Number of times to repeat the animation
+     * @returns {Object} Assistant object with stop and help methods
+     */
     customKeyFrames(frames = {}, settings = { duration: 1000, easing: 'linear', delay: 0, iterations: 1 }) {
         const { duration, easing, delay, iterations } = settings;
 
@@ -217,25 +205,14 @@ class Animation {
 
         for (let i = 0; i < Math.max(1, iterations); i++) scheduleIteration(i);
 
-        const assistent = {
+        const controller = {
             stop: () => {
                 stopped = true;
                 while (timers.length) clearTimeout(timers.pop());
             },
-            help: () => {
-                console.log('The customKeyFrames method applies custom keyframe animations to the target element.');
-                console.log('Usage: customKeyFrames(frames: object|array, { duration: number, easing: string, delay: number, iterations: number })');
-                console.log('\n');
-                console.log('Parameters:');
-                console.log('- frames: An object mapping percentages to style objects or an array of { percent, styles }');
-                console.log('- duration: Total duration of one iteration in milliseconds (default: 1000)');
-                console.log('- easing: Easing function for the transition (default: linear, others: ease, ease-in, ease-out, ease-in-out)');
-                console.log('- delay: Delay before the animation starts in milliseconds (default: 0)');
-                console.log('- iterations: Number of times to repeat the animation (default: 1)');
-            }
         }
 
-        return assistent;
+        return controller;
     }
 }
 

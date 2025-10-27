@@ -48,7 +48,13 @@ body p {
 	flex-direction: column;
 }
 
+.loading-screen .loading-content .loading-header {
+	font-family: var(--font-secondary);
+	opacity: 0;
+}
+
 .loading-screen .loading-content .loading-bar {
+	opacity: 0;
 	margin: 15px;
 	padding: 1.1px;
 	border: solid 1px #ffffff;
